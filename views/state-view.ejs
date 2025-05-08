@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= stateName %> - Tourist Spots</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1><%= stateName %> - Tourist Spots</h1>
+    <a href="/">Back to Home</a>
+  </header>
+
+  <main>
+    <div class="spot-list">
+      <% if (spots.length === 0) { %>
+        <p>No tourist spots added for this state yet.</p>
+      <% } else { %>
+        <% spots.forEach(spot => { %>
+          <div class="spot-card">
+            <h4><%= spot.name %></h4>
+            <p><strong>Location:</strong> <%= spot.location %></p>
+            <p><%= spot.description %></p>
+            <form action="/delete/<%= spot._id %>" method="POST" onsubmit="return confirm('Delete this spot?');">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>
